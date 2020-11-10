@@ -1,0 +1,118 @@
+<?php
+include ('productCRUD.php');
+include ('index.html');
+
+$obj = new ProductCRUD();
+//read data
+$list = $obj->readProduct();
+if($list) {
+    /*foreach ($list as $item) {
+        $content ="";
+        foreach ($item as $key => $value) {
+            $content = $content . $key . " : " . $value . "<br>" ;
+        }
+        echo $content ."<br>";
+    }
+}*/
+?>
+
+<!DOCTYPE html>
+    <html>
+    <head>
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </head>
+        <body>
+         <div class="container">
+            <table class="table table-dark">
+            <h3><a href="insert.php">ADDNEW</a></h3>
+             <tr> 
+                <th> Product ID: </th>
+                <th> Product Name: </th>
+                <th> Product Price: </th>
+                <th> Product Image: </th>
+                <th> Product Details: </th>
+                <th> Actions </th>
+             </tr>
+                <?php foreach($list as $item) {?>
+             <tr>
+                <td><?php echo$item["code"] ?> </td> 
+                <td><?php echo$item["name"] ?> </td> 
+                <td><?php echo$item["price"] ?> </td> 
+                <td><img src="img\<?=$item['image']?>"width="144" height="142"/></td> 
+                <td><?php echo$item["details"] ?> </td> 
+                <td><a href="#"><button type="button" class="btn btn-success">Update</button></a>
+                    <a href="delete.php?code=<?=$item ["code"] ?>"
+                     onClick="return confirm ('Are you sure delete?');">
+                    <button type="button" class="btn btn-danger">Delete</button></a> </d>
+              </tr>
+              <?php } ?>
+              <?php } ?>
+            </table>
+          </div>
+         </body>
+    </html>
+      <!-- FOOTER -->
+      <footer>
+        <!-- Contact Us -->
+        <div class="background-dark padding text-center footer-social">
+          <a class="margin-right-10" target="_blank" href="https://www.facebook.com"><i class="icon-facebook_circle text-size-30"></i> <span class="text-strong text-white hide-s hide-m">FACEBOOK</span></a>
+          <a class="margin-right-10" target="_blank" href="https://www.twitter.com"><i class="icon-twitter_circle text-size-30"></i> <span class="text-strong text-white hide-s hide-m">TWITTER</span></a>
+          <a class="margin-right-10" target="_blank" href="https://www.instagram.com"><i class="icon-instagram_circle text-size-30"></i> <span class="text-strong text-white hide-s hide-m">INSTAGRAM</span></a>
+          <a target="_blank" href="https://www.linkedin.com"><i class="icon-linked_in_circle text-size-30"></i> <span class="text-strong text-white hide-s hide-m">LINKEDIN</span></a>                                                                         
+        </div>
+
+        <!-- Main Footer -->
+        <section class="section-small-padding text-center background-dark full-width">
+          <div class="line">
+            <div class="margin">
+              <!-- Collumn 1 -->              
+              <div class="s-12 m-12 l-4 margin-m-bottom-30">
+                <h3 class="text-size-16">Company Address</h3>
+                <p class="text-size-14">
+                   Responsive Street 7<br>
+                   London - United Kingdom<br> 
+                   Europe
+                </p>               
+              </div>
+              <!-- Collumn 2 -->
+              <div class="s-12 m-12 l-4 margin-m-bottom-30">
+                <h3 class="text-size-16">E-mail</h3>
+                <p class="text-size-14">
+                   contact@sampledomain.com<br>
+                   office@sampledomain.com
+                </p>              
+              </div>
+              <!-- Collumn 3 -->
+              <div class="s-12 m-12 l-4 ">
+                <h3 class="text-size-16">Phone Numbers</h3>
+                <p class="text-size-14">
+                   0800 4521 800 50<br>
+                   0450 5896 625 16<br>
+                   0798 6546 465 15
+                </p>             
+              </div>
+            </div>
+          </div>  
+        </section>
+        <hr class="break margin-top-bottom-0" style="border-color: rgba(0, 0, 0, 0.80);">
+        
+        <!-- Bottom Footer -->
+        <section class="padding background-dark full-width">
+          <div class="text-center">
+            <p class="text-size-12">Copyright 2019, Vision Design - graphic zoo</p>
+            <p class="text-size-12">All images is purchased from Bigstock. Do not use the images in your website.</p>
+          </div>
+        </section>
+      </footer>
+    </div>
+    <script type="text/javascript" src="js/responsee.js"></script>
+    <script type="text/javascript" src="js/jquery.events.touch.js"></script>
+    <script type="text/javascript" src="owl-carousel/owl.carousel.js"></script>
+    <script type="text/javascript" src="js/template-scripts.js"></script> 
+  </body>
+</html>
